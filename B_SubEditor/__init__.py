@@ -367,8 +367,8 @@ def create_text_strips(context, subtitles, channel):
         strip.select = False 
 
     for start, end, text, styles in subtitles:
-        start_frame = int(start * scene.render.fps)
-        end_frame = int(end * scene.render.fps)
+        start_frame = int(start * scene.render.fps / scene.render.fps_base)
+        end_frame = int(end * scene.render.fps / scene.render.fps_base)
 
         # Create the text strip
         text_strip = sequencer.sequences.new_effect(
