@@ -368,7 +368,7 @@ def create_text_strips(context, subtitles, channel):
 
     for start, end, text, styles in subtitles:
         start_frame = int(start * scene.render.fps / scene.render.fps_base)
-        end_frame = int(end * scene.render.fps / scene.render.fps_base)
+        frame_length = int(end * scene.render.fps / scene.render.fps_base) - start_frame
 
         # Create the text strip
         text_strip = sequencer.sequences.new_effect(
@@ -376,8 +376,7 @@ def create_text_strips(context, subtitles, channel):
             type='TEXT',
             channel=channel,
             frame_start=start_frame,
-            frame_end=end_frame,
-        )
+            length=frame_length,
 
         # Assign text content and styles
         text_strip.text = text
